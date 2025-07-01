@@ -1,4 +1,4 @@
-import { makeOffline } from "./make-offline";
+import { makeOffline, generateServiceWorker } from "./make-offline";
 
 export default {
   async fetch(request) {
@@ -17,21 +17,21 @@ export default {
     // Any HTML page - just wrap with makeOffline()
     if (url.pathname === "/") {
       const html = `
-        <!DOCTYPE html>
-        <html>
-        <head><title>My App</title></head>
-        <body>
-            <h1>Welcome!</h1>
-            <p>This automatically works offline!</p>
-            <button onclick="fetch('/api/test').then(r=>r.json()).then(console.log)">
-              Test API
-            </button>
-        </body>
-        </html>
+<!DOCTYPE html>
+<html>
+<head><title>My App</title></head>
+<body>
+    <h1>Welcome!</h1>
+    <p>This automatically works offline!</p>
+    <button onclick="fetch('/api/test').then(r=>r.json()).then(console.log)">
+        Test API
+    </button>
+</body>
+</html>
       `;
 
       return new Response(makeOffline(html), {
-        headers: { "Content-Type": "text/html" },
+        headers: { "Content-Type": "text/html;charset=utf8" },
       });
     }
 
