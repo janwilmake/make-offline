@@ -1,0 +1,6 @@
+name = "make-offline"
+main = "example.js"
+compatibility_date = "2025-07-01"
+routes = [
+  { pattern = "make-offline.wilmake.com", custom_domain = true }
+]
